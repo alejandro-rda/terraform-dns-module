@@ -1,4 +1,4 @@
-Terraform Module: DNS Management
+# Terraform Module: DNS Management
 
 ## Overview
 This Terraform module dynamically creates DNS records from JSON files, facilitating the management of DNS configurations
@@ -56,7 +56,6 @@ And like this for CNAME records:
 - **CI/CD Pipeline Automation**: Using GitHub Actions for automated testing, validation, and deployment.
 - **Automated Testing with Terratest**: To ensure module functionalities are verified automatically after each change.
 - **Code Quality Assurance with tflint**: To maintain high code standards and prevent common errors.
-- **Monitoring and Logging Capabilities**: To enhance visibility into DNS changes and their impacts on the system.
 
 By integrating these enhancements, the DNS management module will provide a more robust, secure, and efficient way
 to manage DNS records in cloud-native and traditional environments alike.
