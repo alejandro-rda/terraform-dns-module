@@ -40,13 +40,23 @@ terraform {
   }
 }
 
+provider "dns" {
+  # Configure your DNS provider
+  update {
+    server = var.dns_server
+  }
+}
 
 # ------------------------------------------
 # Write your local resources here
 # ------------------------------------------
 
 locals {
-
+  json_files  = fileset("${path.module}/examples/exercise/input-json", "*.json")
+  dns_records = { 
+    for f in local.json_files : trimsuffix(basename(f), ".json") 
+    => jsondecode(file("${path.module}/examples/exercise/input-json/${f}")) 
+  }
 }
 
 
@@ -54,13 +64,20 @@ locals {
 # Write your Terraform resources here
 # ------------------------------------------
 
-resource "dns_a_record_set" "www" {
-  zone = "example.com."
-  name = "www"
-  addresses = [
-    "192.168.0.1",
-    "192.168.0.2",
-    "192.168.0.3",
-  ]
-  ttl = 300
+resource "dns_a_record_set" "a_record" {
+  for_each = { for k, v in local.dns_records : k => v if v.dns_record_type == "a" }
+
+  zone      = each.value.zone
+  name      = each.key
+  addresses = each.value.addresses
+  ttl       = each.value.ttl
+}
+
+resource "dns_cname_record" "cname_record" {
+  for_each = { for k, v in local.dns_records : k => v if v.dns_record_type == "cname" }
+
+  zone      = each.value.zone
+  name      = each.key
+  cname     = each.value.cname
+  ttl       = each.value.ttl
 }
