@@ -1,22 +1,36 @@
-# Terraform Module: DNS Management
+Terraform Module: DNS Management
 
-This Terraform module is designed to dynamically create DNS records based on JSON input.
-It supports creating A and CNAME records. Ensure JSON files are placed in the 'input-json' directory.
+## Overview
+This Terraform module dynamically creates DNS records from JSON files, facilitating the management of DNS configurations
+in a declarative manner using infrastructure as code principles. It is designed to be flexible, supporting the creation
+of A and CNAME record types, which can be defined through JSON configuration files placed in the 'examples/exercise/input-json' directory.
 
-## Usage
+The module leverages Terraform's capabilities to manage state and dependencies, ensuring that DNS records are consistently
+applied and maintained across updates. It's ideal for environments where DNS records are frequently updated or where
+automation of DNS management is crucial.
 
-### Quick Example
+## Features
+- **Dynamic Record Creation**: Automatically manages DNS A and CNAME records based on the content of JSON files, allowing
+  for rapid updates and scalability in DNS management.
+- **Support for Multiple Record Types**: Handles both A and CNAME DNS records, providing flexibility depending on the
+  needs of the network or application architecture.
+- **Automated Management**: Facilitates the automation of DNS record provisioning and updating, reducing manual overhead
+  and minimizing the risk of human errors.
+- **Extensibility**: Designed to be easily extended to support additional DNS record types or integrate with other
+  Terraform modules or systems.
+
+## Usage Example
+Here is a quick example of how to use this module to manage DNS records:
 
 ```hcl
 module "dns_management" {
-  source  = "./modules/terraform-dns-module"
+  source = "./modules/dns_management"
   dns_server_address = "127.0.0.1"
 }
 ```
 
-### JSON File Format
+Ensure that your JSON files are structured as follows for A records:
 
-A records JSON example:
 ```json
 {
   "zone": "example.com.",
@@ -26,7 +40,8 @@ A records JSON example:
 }
 ```
 
-CNAME records JSON example:
+And like this for CNAME records:
+
 ```json
 {
   "zone": "example.com.",
@@ -35,6 +50,16 @@ CNAME records JSON example:
   "dns_record_type": "cname"
 }
 ```
+
+## Planned Enhancements
+- **Terragrunt Integration**: To facilitate DRY principles and improve remote state management.
+- **CI/CD Pipeline Automation**: Using GitHub Actions for automated testing, validation, and deployment.
+- **Automated Testing with Terratest**: To ensure module functionalities are verified automatically after each change.
+- **Code Quality Assurance with tflint**: To maintain high code standards and prevent common errors.
+- **Monitoring and Logging Capabilities**: To enhance visibility into DNS changes and their impacts on the system.
+
+By integrating these enhancements, the DNS management module will provide a more robust, secure, and efficient way
+to manage DNS records in cloud-native and traditional environments alike.
 
 ## Requirements
 
