@@ -1,22 +1,43 @@
 /**
-* # Terraform
-*
-* <Short TF module description>
-*
-*
-* ## Usage
-*
-* ### Quick Example
-*
-* ```hcl
-* module "dns_" {
-*   source = ""
-*   input1 = <>
-*   input2 = <>
-* } 
-* ```
-*
-*/
+ * # Terraform Module: DNS Management
+ *
+ * This Terraform module is designed to dynamically create DNS records based on JSON input.
+ * It supports creating A and CNAME records. Ensure JSON files are placed in the 'input-json' directory.
+ *
+ * ## Usage
+ *
+ * ### Quick Example
+ *
+ * ```hcl
+ * module "dns_management" {
+ *   source  = "./modules/terraform-dns-module"
+ *   dns_server_address = "127.0.0.1"
+ * }
+ * ```
+ *
+ * ### JSON File Format
+ *
+ * A records JSON example:
+ * ```json
+ * {
+ *   "zone": "example.com.",
+ *   "addresses": ["192.168.1.1"],
+ *   "ttl": 300,
+ *   "dns_record_type": "a"
+ * }
+ * ```
+ *
+ * CNAME records JSON example:
+ * ```json
+ * {
+ *   "zone": "example.com.",
+ *   "cname": "target.example.com.",
+ *   "ttl": 300,
+ *   "dns_record_type": "cname"
+ * }
+ * ```
+ */
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
 
