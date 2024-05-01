@@ -32,7 +32,7 @@ options {
 	*/
 	recursion yes;
 
-	dnssec-enable yes;
+	# dnssec-enable yes;
 	dnssec-validation yes;
 
 	/* Path to ISC DLV key */

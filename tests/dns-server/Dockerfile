@@ -15,3 +15,7 @@ RUN systemctl enable named.service
 # Copy in default zone content
 COPY --chown=named:named db.* /var/named/dynamic/
 RUN chmod 644 /var/named/dynamic/db.*
+
+# Start BIND directly
+USER named
+CMD ["named", "-g", "-c", "/etc/named.conf"]

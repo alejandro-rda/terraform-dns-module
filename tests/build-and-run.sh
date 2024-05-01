@@ -52,7 +52,7 @@ docker run -d --privileged --tmpfs /tmp --tmpfs /run \
     -v ${SCRIPT_DIR}/dns-server/named.conf.none:/etc/named.conf:ro \
     -p 127.0.0.1:53:53 \
     -p 127.0.0.1:53:53/udp \
-    --rm --name ${CONTAINER_NAME} --hostname ns.${EXAMPLE_DOMAIN} ${CONTAINER_NAME}:${CONTAINER_TAG}
+    --name ${CONTAINER_NAME} --hostname ns.${EXAMPLE_DOMAIN} ${CONTAINER_NAME}:${CONTAINER_TAG}
 
 _log "You can now attach a console to the recently created container by running the following command"
 echo
