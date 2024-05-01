@@ -1,2 +1,3 @@
-# terraform-dns-module
- Terraform DNS Dynamic Module
+# Terraform Coding Exercise
+
+Please read the [instructions](./INSTRUCTIONS.md) file.
