@@ -8,3 +8,4 @@ $TTL 86400
 				)
 		IN	NS	ns.example.com.
 ns		IN	A	127.0.0.1
+blog.example.com.    IN    CNAME    www.example.com.

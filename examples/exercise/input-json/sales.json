@@ -1,0 +1,6 @@
+{
+    "zone": "example.com.",
+    "dns_record_type": "cname",
+    "cname": "blog.example.com.",
+    "ttl": 300
+}
